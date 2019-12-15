@@ -9,13 +9,15 @@ public class GroundCreator : MonoBehaviour
     public GameObject StartPoint;
     public Transform RenderPoint;
     public GameObject WhatIsGround;
-    public GameObject Trap;
-    public int counter;
+    public GameObject Obstacle;
+    public GameObject BG;
 
+    public int counter;
     private void Start()
     {
-        StartPoint.GetComponent<IsOnThroughPoint>().Ground = gameObject;
-        StartPoint.GetComponent<TrapsCreator>().Trap = Trap;
+        StartPoint.GetComponent<IsOnThroughPoint>().groundcreator = gameObject;
+        StartPoint.GetComponent<IsOnThroughPoint>().BGWider = BG;
+        StartPoint.GetComponent<ObstacleCreator>().Obstacle = Obstacle;
     }
 
     private void Update()
@@ -31,6 +33,6 @@ public class GroundCreator : MonoBehaviour
     public void CreateGround()
     {
         GameObject ground = Instantiate(StartPoint, new Vector3(counter, RenderPoint.transform.position.y, RenderPoint.transform.position.z), Quaternion.identity).GetComponent<GameObject>();
-        counter += 15;
+        counter += counter;
     }
 }

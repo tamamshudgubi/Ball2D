@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CoinsSpawner : MonoBehaviour
 {
+    public float MaxObstacleY = -2.5f;
     public float TImetoSpawn;
     public float CallDown;
 
@@ -16,12 +17,11 @@ public class CoinsSpawner : MonoBehaviour
     public float Radius;
     public Transform Point;
     public LayerMask IsPlaceFree;
-
-
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
+
     private void Update()
     {
         TImetoSpawn += Time.deltaTime;
@@ -30,13 +30,13 @@ public class CoinsSpawner : MonoBehaviour
 
         if (TImetoSpawn >= 0.5f)
         {
-            if (!CheckTrap())
+            if (CheckObstacleForward() == false)
             {
-                SpawnCoin();
+                SpawnCoinOnGround();
             }
             else
             {
-                Instantiate(Coin, new Vector3(gameObject.transform.position.x, -2.5f), Quaternion.identity);
+                SpawnCoinAboveObstacle();
             }
 
             TImetoSpawn = CallDown;
@@ -44,12 +44,17 @@ public class CoinsSpawner : MonoBehaviour
 
     }
 
-    public void SpawnCoin()
+    public void SpawnCoinOnGround()
     {
         Instantiate(Coin, gameObject.transform.position, Quaternion.identity);
     }
 
-    public bool CheckTrap()
+    public void SpawnCoinAboveObstacle()
+    {
+        Instantiate(Coin, new Vector3(gameObject.transform.position.x, -MaxObstacleY), Quaternion.identity);
+    }
+
+    public bool CheckObstacleForward()
     {
         if (Physics2D.OverlapCircle(Point.transform.position, Radius, IsPlaceFree))
         {

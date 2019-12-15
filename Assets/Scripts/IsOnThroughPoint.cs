@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class IsOnThroughPoint : MonoBehaviour
 {
-    public GameObject Ground;
+    public GameObject groundcreator;
+    public GameObject BGWider;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        Player player = GetComponent<Player>();
+
+        if (player != null)
         {
-            Ground.GetComponent<GroundCreator>().IsCreate = true;
+            groundcreator.GetComponent<GroundCreator>().IsCreate = true;
+            BGWider.GetComponent<BackgroundWider>().IsWide = true;
         }
     }
 

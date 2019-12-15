@@ -6,10 +6,9 @@ public class Player : MonoBehaviour
 {
     public GameObject TrapCheker;
     public GameObject GroundCheker;
-    public bool IsPaused;
-    public GameObject PauseMenu;
     public TMP_Text WalletDisplay;
     public Rigidbody2D rb;
+
     public float Speed;
     public float JumpForce;
     public int Wallet;
@@ -25,34 +24,21 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (GroundCheker.GetComponent<GroundCheker>().CheckGround() || TrapCheker.GetComponent<TrapsCheker>().CheckTrap())
+            if (GroundCheker.GetComponent<GroundCheker>().CheckGround() || TrapCheker.GetComponent<ObstacleCheker>().CheckObstacle())
             {
                 rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            PauseMenu.SetActive(!IsPaused);
-            IsPaused = !IsPaused;
-
-            if (Time.timeScale == 0.00f)
-            {
-                Time.timeScale = 1.0f;
-            }
-            else
-            {
-                Time.timeScale = 0.00f;
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Coin"))
+        Coin coin = GetComponent<Coin>();
+
+        if (coin != null)
         {
             collision.GetComponent<Coin>().TakeCoin();
-            Wallet += collision.gameObject.GetComponent<Coin>().data.CoinCost;
+            Wallet += collision.gameObject.GetComponent<Coin>().Cost;
             WalletDisplay.text = Wallet.ToString();
         }
     }

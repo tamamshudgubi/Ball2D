@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    public CoinData data; 
-    public CoinData TakeCoin()
+    public int Cost = 100;
+    public int TakeCoin()
     {
         Destroy(gameObject);
 
-        return data;
+        return Cost;
     }
 }

@@ -4,20 +4,27 @@ using UnityEngine;
 
 public class BackgroundWider : MonoBehaviour
 {
-    public float CallDown;
-    public float TimeToWide;
-    public float CurrentSize;
+    public bool IsWide;
 
+    public float CurrentSize;
+    public float FixedXSize = 42f;
+    public float FixedTransfomXsize = 23.4f;
+
+    public SpriteRenderer Renderer;
     void Update()
     {
-        TimeToWide += Time.deltaTime;
-        if (TimeToWide >= 2f)
+        if (IsWide)
         {
-            gameObject.GetComponent<SpriteRenderer>().size = new Vector2(CurrentSize + 42f, 15.36f);
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x + 23.4f, gameObject.transform.position.y);
-            CurrentSize = gameObject.GetComponent<SpriteRenderer>().size.x;
-            TimeToWide = CallDown;
+            Wide();
         }
 
+        IsWide = false;
+    }
+
+    public void Wide()
+    {
+        Renderer.size = new Vector2(CurrentSize + FixedXSize, Renderer.size.y);
+        transform.position = new Vector3(transform.position.x + FixedTransfomXsize, transform.position.y);
+        CurrentSize = Renderer.size.x;
     }
 }
