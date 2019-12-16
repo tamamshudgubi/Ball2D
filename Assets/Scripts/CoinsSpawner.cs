@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CoinsSpawner : MonoBehaviour
 {
-    private float SpawnTimeLimit = 0.5f;
-    private float MaxObstacleY = -2.5f;
-    private float TImetoSpawn;
-    private float CoolDown = 0.00f;
+    private float _spawnTimeLimit = 0.5f;
+    private float _maxObstacleY = -2.5f;
+    private float _timetoSpawn;
+    private float _coolDown = 0.00f;
 
-    private Rigidbody2D rb;
-    public float Speed;
+    private Rigidbody2D _rb;
+    public float Speed = 3f;
 
     public GameObject Coin;
     public GameObject CoinSpawn;
@@ -21,16 +21,16 @@ public class CoinsSpawner : MonoBehaviour
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        TImetoSpawn += Time.deltaTime;
+        _timetoSpawn += Time.deltaTime;
 
-        rb.velocity = new Vector2(Speed, rb.velocity.y);
+        _rb.velocity = new Vector2(Speed, _rb.velocity.y);
 
-        if (TImetoSpawn >= SpawnTimeLimit)
+        if (_timetoSpawn >= _spawnTimeLimit)
         {
             if (CheckObstacleForward() == false)
             {
@@ -41,7 +41,7 @@ public class CoinsSpawner : MonoBehaviour
                 SpawnCoinAboveObstacle();
             }
 
-            TImetoSpawn = CallDown;
+            _timetoSpawn = _coolDown;
         }
 
     }
@@ -53,7 +53,7 @@ public class CoinsSpawner : MonoBehaviour
 
     private void SpawnCoinAboveObstacle()
     {
-        Instantiate(Coin, new Vector3(transform.position.x, -MaxObstacleY), Quaternion.identity);
+        Instantiate(Coin, new Vector3(transform.position.x, _maxObstacleY), Quaternion.identity);
     }
 
     private bool CheckObstacleForward()

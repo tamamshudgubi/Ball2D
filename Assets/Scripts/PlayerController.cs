@@ -5,9 +5,9 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
-    private ObstacleCheker ObstacleCheker;
-    private GroundCheker GroundCheker;
-    private Rigidbody2D rb;
+    private ObstacleCheker _obstacleCheker;
+    private GroundCheker _groundCheker;
+    private Rigidbody2D _rb;
 
     public TMP_Text WalletDisplay;
     public float Speed;
@@ -17,20 +17,20 @@ public class Player : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
-        rb = GetComponent<Rigidbody2D>();
-        GroundCheker = GetComponent<GroundCheker>();
-        ObstacleCheker = GetComponent<ObstacleCheker>();
+        _rb = GetComponent<Rigidbody2D>();
+        _groundCheker = GetComponent<GroundCheker>();
+        _obstacleCheker = GetComponent<ObstacleCheker>();
     }
 
     private void Update()
     {
-        rb.velocity = new Vector2(Speed * Time.deltaTime, rb.velocity.y);
+        _rb.velocity = new Vector2(Speed * Time.deltaTime, _rb.velocity.y);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (GroundCheker.CheckGround() || ObstacleCheker.CheckObstacle())
+            if (_groundCheker.CheckGround() || _obstacleCheker.CheckObstacle())
             {
-                rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
+                _rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
             }
         }
     }

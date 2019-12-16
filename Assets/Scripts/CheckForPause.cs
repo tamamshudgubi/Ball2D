@@ -5,14 +5,14 @@ using UnityEngine;
 public class CheckForPause : MonoBehaviour
 {
     public GameObject PauseMenu;
-    private bool IsPaused;
+    private bool _isPaused;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            PauseMenu.SetActive(!IsPaused);
-            IsPaused = !IsPaused;
+            PauseMenu.SetActive(!_isPaused);
+            _isPaused = !_isPaused;
 
             if (Time.timeScale == 0.00f)
             {

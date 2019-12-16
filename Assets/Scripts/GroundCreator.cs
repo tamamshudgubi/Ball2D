@@ -12,7 +12,7 @@ public class GroundCreator : MonoBehaviour
     public GameObject Obstacle;
     public GameObject BG;
 
-    private int counter = 10;
+    private int _counter = 10;
 
     private void Start()
     {
@@ -33,7 +33,7 @@ public class GroundCreator : MonoBehaviour
 
     private void CreateGround()
     {
-        GameObject ground = Instantiate(StartPoint, new Vector3(counter, RenderPoint.transform.position.y, RenderPoint.transform.position.z), Quaternion.identity).GetComponent<GameObject>();
-        counter += counter;
+        GameObject ground = Instantiate(StartPoint, new Vector3(_counter, RenderPoint.transform.position.y, RenderPoint.transform.position.z), Quaternion.identity).GetComponent<GameObject>();
+        _counter += _counter;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LoseCheck : MonoBehaviour
 {
-    private bool IsLose;
+    private bool _isLose;
 
     public GameObject LoseMenu;
 
@@ -18,7 +18,7 @@ public class LoseCheck : MonoBehaviour
         if (!IsPlayerInGame())
         {
             Time.timeScale = 0;
-            LoseMenu.SetActive(!IsLose);
+            LoseMenu.SetActive(!_isLose);
         }
     }
 

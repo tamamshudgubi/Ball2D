@@ -6,9 +6,9 @@ public class BackgroundWider : MonoBehaviour
 {
     public bool IsWide;
 
-    private float CurrentSize;
-    private float FixedXSize = 42f;
-    private float FixedTransfomXsize = 23.4f;
+    private float _currentSize;
+    private float _fixedXSize = 42f;
+    private float _fixedTransfomXsize = 23.4f;
 
     private SpriteRenderer Renderer;
 
@@ -24,8 +24,8 @@ public class BackgroundWider : MonoBehaviour
 
     public void Wide()
     {
-        Renderer.size = new Vector2(CurrentSize + FixedXSize, Renderer.size.y);
-        transform.position = new Vector3(transform.position.x + FixedTransfomXsize, transform.position.y);
-        CurrentSize = Renderer.size.x;
+        Renderer.size = new Vector2(_currentSize + _fixedXSize, Renderer.size.y);
+        transform.position = new Vector3(transform.position.x + _fixedTransfomXsize, transform.position.y);
+        _currentSize = Renderer.size.x;
     }
 }

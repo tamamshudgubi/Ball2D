@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ObstacleToRandomScale : MonoBehaviour
 {
-    [System.Serializable] private float ObstaclewidthMin;
-    [System.Serializable] private float ObstacleheightMin;
-    [System.Serializable] private float ObstaclewidthMax;
-    [System.Serializable] private float ObstacleheightMax;
+    [System.Serializable] private float _obstaclewidthMin;
+    [System.Serializable] private float _obstacleheightMin;
+    [System.Serializable] private float _obstaclewidthMax;
+    [System.Serializable] private float _obstacleheightMax;
 
     private void Start()
     {
-        gameObject.transform.localScale = new Vector3(Random.Range(ObstaclewidthMin, ObstaclewidthMax), Random.Range(ObstacleheightMin, ObstacleheightMax), 1);
+        gameObject.transform.localScale = new Vector3(Random.Range(_obstaclewidthMin, _obstaclewidthMax), Random.Range(_obstacleheightMin, _obstacleheightMax), 1);
     }
 
 }

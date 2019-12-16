@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class ObstacleCreator : MonoBehaviour
 {
-    [System.Serializable] private float FixedYPoz;
-    private int ObstacleCount = 10;
+    [System.Serializable] private float _fixedYPoz;
+    private int _obstacleCount = 10;
 
     public GameObject Obstacle;
 
     private void Start()
     {
-        for (int i = 0; i < ObstacleCount; i++)
+        for (int i = 0; i < _obstacleCount; i++)
         {
-            float x = Random.Range(gameObject.transform.position.x, gameObject.transform.position.x * 2);
-            GameObject obstacle = Instantiate(Obstacle, new Vector3(x, FixedYPoz), Quaternion.identity).GetComponent<GameObject>();
+            float x = Random.Range(transform.position.x, transform.position.x * 2);
+            GameObject obstacle = Instantiate(Obstacle, new Vector3(x, _fixedYPoz), Quaternion.identity).GetComponent<GameObject>();
         }
     }
 }

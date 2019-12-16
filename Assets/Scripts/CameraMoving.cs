@@ -5,15 +5,15 @@ using UnityEngine;
 public class Tracking : MonoBehaviour
 {
     public float Speed;
-    private Rigidbody2D rb;
+    private Rigidbody2D _rb;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        rb.velocity = new Vector2(Speed, rb.velocity.y);
+        _rb.velocity = new Vector2(Speed, _rb.velocity.y);
     }
 }
