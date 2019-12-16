@@ -7,11 +7,11 @@ public class MainMenu : MonoBehaviour
 {
     public Animator AuthorsAnim;
 
-
     private void Start()
     {
         Time.timeScale = 1;
     }
+
     public void Play()
     {
         SceneManager.LoadScene("Level 1");

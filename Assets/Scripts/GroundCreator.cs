@@ -12,7 +12,8 @@ public class GroundCreator : MonoBehaviour
     public GameObject Obstacle;
     public GameObject BG;
 
-    public int counter;
+    private int counter = 10;
+
     private void Start()
     {
         StartPoint.GetComponent<IsOnThroughPoint>().groundcreator = gameObject;
@@ -30,7 +31,7 @@ public class GroundCreator : MonoBehaviour
         IsCreate = false;
     }
 
-    public void CreateGround()
+    private void CreateGround()
     {
         GameObject ground = Instantiate(StartPoint, new Vector3(counter, RenderPoint.transform.position.y, RenderPoint.transform.position.z), Quaternion.identity).GetComponent<GameObject>();
         counter += counter;

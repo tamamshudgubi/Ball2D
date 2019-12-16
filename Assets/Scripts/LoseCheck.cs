@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class LoseCheck : MonoBehaviour
 {
-    public bool IsLose;
+    private bool IsLose;
+
     public GameObject LoseMenu;
+
     public Transform Point;
     public float Angle;
     public GameObject Size;
     public LayerMask WhoIsPlayer;
 
-    void Update()
+    private void Update()
     {
         if (!IsPlayerInGame())
         {
@@ -19,6 +21,7 @@ public class LoseCheck : MonoBehaviour
             LoseMenu.SetActive(!IsLose);
         }
     }
+
     public bool IsPlayerInGame()
     {
         if (Physics2D.OverlapBox(Point.transform.position, Size.GetComponent<BoxCollider2D>().size, Angle, WhoIsPlayer))

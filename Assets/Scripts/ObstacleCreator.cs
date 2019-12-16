@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ObstacleCreator : MonoBehaviour
 {
-    public float FixedYPoz;
-    public int ObstacleCount;
+    [System.Serializable] private float FixedYPoz;
+    private int ObstacleCount = 10;
 
     public GameObject Obstacle;
 

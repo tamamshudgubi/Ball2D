@@ -5,8 +5,9 @@ using UnityEngine;
 public class CheckForPause : MonoBehaviour
 {
     public GameObject PauseMenu;
-    public bool IsPaused;
-    void Update()
+    private bool IsPaused;
+
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {

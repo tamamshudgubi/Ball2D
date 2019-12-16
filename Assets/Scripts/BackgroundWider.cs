@@ -6,12 +6,13 @@ public class BackgroundWider : MonoBehaviour
 {
     public bool IsWide;
 
-    public float CurrentSize;
-    public float FixedXSize = 42f;
-    public float FixedTransfomXsize = 23.4f;
+    private float CurrentSize;
+    private float FixedXSize = 42f;
+    private float FixedTransfomXsize = 23.4f;
 
-    public SpriteRenderer Renderer;
-    void Update()
+    private SpriteRenderer Renderer;
+
+    private void Update()
     {
         if (IsWide)
         {

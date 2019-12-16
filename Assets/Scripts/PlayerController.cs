@@ -2,29 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+
 public class Player : MonoBehaviour
 {
-    public GameObject TrapCheker;
-    public GameObject GroundCheker;
-    public TMP_Text WalletDisplay;
-    public Rigidbody2D rb;
+    private ObstacleCheker ObstacleCheker;
+    private GroundCheker GroundCheker;
+    private Rigidbody2D rb;
 
+    public TMP_Text WalletDisplay;
     public float Speed;
     public float JumpForce;
     public int Wallet;
-    void Start()
+
+    private void Start()
     {
         Time.timeScale = 1;
         rb = GetComponent<Rigidbody2D>();
+        GroundCheker = GetComponent<GroundCheker>();
+        ObstacleCheker = GetComponent<ObstacleCheker>();
     }
 
-    void Update()
+    private void Update()
     {
         rb.velocity = new Vector2(Speed * Time.deltaTime, rb.velocity.y);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (GroundCheker.GetComponent<GroundCheker>().CheckGround() || TrapCheker.GetComponent<ObstacleCheker>().CheckObstacle())
+            if (GroundCheker.CheckGround() || ObstacleCheker.CheckObstacle())
             {
                 rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
             }
@@ -33,7 +37,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Coin coin = GetComponent<Coin>();
+        Coin coin = collision.GetComponent<Coin>();
 
         if (coin != null)
         {

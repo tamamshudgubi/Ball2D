@@ -9,7 +9,7 @@ public class IsOnThroughPoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Player player = GetComponent<Player>();
+        Player player = collision.GetComponent<Player>();
 
         if (player != null)
         {

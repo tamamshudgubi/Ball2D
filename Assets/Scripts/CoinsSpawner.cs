@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class CoinsSpawner : MonoBehaviour
 {
-    public float MaxObstacleY = -2.5f;
-    public float TImetoSpawn;
-    public float CallDown;
+    private float SpawnTimeLimit = 0.5f;
+    private float MaxObstacleY = -2.5f;
+    private float TImetoSpawn;
+    private float CoolDown = 0.00f;
 
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
     public float Speed;
 
     public GameObject Coin;
@@ -17,6 +18,7 @@ public class CoinsSpawner : MonoBehaviour
     public float Radius;
     public Transform Point;
     public LayerMask IsPlaceFree;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -28,7 +30,7 @@ public class CoinsSpawner : MonoBehaviour
 
         rb.velocity = new Vector2(Speed, rb.velocity.y);
 
-        if (TImetoSpawn >= 0.5f)
+        if (TImetoSpawn >= SpawnTimeLimit)
         {
             if (CheckObstacleForward() == false)
             {
@@ -44,17 +46,17 @@ public class CoinsSpawner : MonoBehaviour
 
     }
 
-    public void SpawnCoinOnGround()
+    private void SpawnCoinOnGround()
     {
-        Instantiate(Coin, gameObject.transform.position, Quaternion.identity);
+        Instantiate(Coin, transform.position, Quaternion.identity);
     }
 
-    public void SpawnCoinAboveObstacle()
+    private void SpawnCoinAboveObstacle()
     {
-        Instantiate(Coin, new Vector3(gameObject.transform.position.x, -MaxObstacleY), Quaternion.identity);
+        Instantiate(Coin, new Vector3(transform.position.x, -MaxObstacleY), Quaternion.identity);
     }
 
-    public bool CheckObstacleForward()
+    private bool CheckObstacleForward()
     {
         if (Physics2D.OverlapCircle(Point.transform.position, Radius, IsPlaceFree))
         {
