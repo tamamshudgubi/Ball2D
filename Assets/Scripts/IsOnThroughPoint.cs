@@ -1,22 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class IsOnThroughPoint : MonoBehaviour
 {
-    public GameObject groundcreator;
+    public GameObject Groundcreator;
     public GameObject BGWider;
+
+    public UnityEvent CreateEvent;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Player player = collision.GetComponent<Player>();
+        PlayerController player = GetComponent<PlayerController>();
 
         if (player != null)
         {
-            groundcreator.GetComponent<GroundCreator>().IsCreate = true;
-            BGWider.GetComponent<BackgroundWider>().IsWide = true;
+            CreateEvent.Invoke();
         }
     }
-
-
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ObstacleCheker : MonoBehaviour
 {
@@ -10,13 +8,6 @@ public class ObstacleCheker : MonoBehaviour
 
     public bool CheckObstacle()
     {
-        if (Physics2D.OverlapCircle(Point.transform.position, Radius, WhatIsObstacle))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return Physics2D.OverlapCircle(Point.transform.position, Radius, WhatIsObstacle);
     }
 }

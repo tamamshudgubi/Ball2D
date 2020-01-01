@@ -1,31 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BackgroundWider : MonoBehaviour
 {
-    public bool IsWide;
-
-    private float _currentSize;
-    private float _fixedXSize = 42f;
-    private float _fixedTransfomXsize = 23.4f;
-
-    private SpriteRenderer Renderer;
-
-    private void Update()
-    {
-        if (IsWide)
-        {
-            Wide();
-        }
-
-        IsWide = false;
-    }
+    public SpriteRenderer Renderer;
 
     public void Wide()
     {
-        Renderer.size = new Vector2(_currentSize + _fixedXSize, Renderer.size.y);
-        transform.position = new Vector3(transform.position.x + _fixedTransfomXsize, transform.position.y);
-        _currentSize = Renderer.size.x;
+        float FixedXSize = 42f;
+        float FixedTransfomXsize = 23.4f;
+
+        Renderer.size = new Vector2(Renderer.size.x + FixedXSize, Renderer.size.y);
+        transform.position = new Vector3(transform.position.x + FixedTransfomXsize, transform.position.y);
     }
 }

@@ -1,11 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ObstacleCreator : MonoBehaviour
 {
-    [System.Serializable] private float _fixedYPoz;
-    private int _obstacleCount = 10;
+    [SerializeField] private float _obstaclewidthMin;
+    [SerializeField] private float _obstacleheightMin;
+    [SerializeField] private float _obstaclewidthMax;
+    [SerializeField] private float _obstacleheightMax;
+
+    public float FixedYPoz;
+    [SerializeField] private int _obstacleCount;
 
     public GameObject Obstacle;
 
@@ -13,8 +16,10 @@ public class ObstacleCreator : MonoBehaviour
     {
         for (int i = 0; i < _obstacleCount; i++)
         {
-            float x = Random.Range(transform.position.x, transform.position.x * 2);
-            GameObject obstacle = Instantiate(Obstacle, new Vector3(x, _fixedYPoz), Quaternion.identity).GetComponent<GameObject>();
+            float x = Random.Range(gameObject.transform.position.x, gameObject.transform.position.x * 2);
+
+            GameObject obstacle = Instantiate(Obstacle, new Vector3(x, FixedYPoz), Quaternion.identity).GetComponent<GameObject>();
+            obstacle.transform.localScale = gameObject.transform.localScale = new Vector3(Random.Range(_obstaclewidthMin, _obstaclewidthMax), Random.Range(_obstacleheightMin, _obstacleheightMax), 1);
         }
     }
 }

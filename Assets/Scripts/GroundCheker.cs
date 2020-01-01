@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GroundCheker : MonoBehaviour
 {
@@ -10,13 +8,6 @@ public class GroundCheker : MonoBehaviour
 
     public bool CheckGround()
     {
-        if (Physics2D.OverlapCircle(Point.transform.position, Radius, WhatIsGround))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return Physics2D.OverlapCircle(Point.transform.position, Radius, WhatIsGround);
     }
 }

@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Tracking : MonoBehaviour
+[RequireComponent(typeof(Rigidbody2D))]
+public class CameraMoving : MonoBehaviour
 {
     public float Speed;
+
     private Rigidbody2D _rb;
 
     private void Start()

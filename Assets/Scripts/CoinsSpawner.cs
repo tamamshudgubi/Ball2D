@@ -1,19 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class CoinsSpawner : MonoBehaviour
 {
-    private float _spawnTimeLimit = 0.5f;
-    private float _maxObstacleY = -2.5f;
-    private float _timetoSpawn;
-    private float _coolDown = 0.00f;
+    [SerializeField] private float _timetoSpawn;
+    [SerializeField] private float _callDown;
 
     private Rigidbody2D _rb;
-    public float Speed = 3f;
+    public float Speed;
 
     public GameObject Coin;
-    public GameObject CoinSpawn;
 
     public float Radius;
     public Transform Point;
@@ -30,7 +26,7 @@ public class CoinsSpawner : MonoBehaviour
 
         _rb.velocity = new Vector2(Speed, _rb.velocity.y);
 
-        if (_timetoSpawn >= _spawnTimeLimit)
+        if (_timetoSpawn >= 0.5f)
         {
             if (CheckObstacleForward() == false)
             {
@@ -41,30 +37,23 @@ public class CoinsSpawner : MonoBehaviour
                 SpawnCoinAboveObstacle();
             }
 
-            _timetoSpawn = _coolDown;
+            _timetoSpawn = _callDown;
         }
-
     }
 
     private void SpawnCoinOnGround()
     {
-        Instantiate(Coin, transform.position, Quaternion.identity);
+        Instantiate(Coin, gameObject.transform.position, Quaternion.identity);
     }
 
     private void SpawnCoinAboveObstacle()
     {
-        Instantiate(Coin, new Vector3(transform.position.x, _maxObstacleY), Quaternion.identity);
+        float MaxObstacleY = -2.5f;
+        Instantiate(Coin, new Vector3(gameObject.transform.position.x, MaxObstacleY), Quaternion.identity);
     }
 
     private bool CheckObstacleForward()
     {
-        if (Physics2D.OverlapCircle(Point.transform.position, Radius, IsPlaceFree))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return Physics2D.OverlapCircle(Point.transform.position, Radius, IsPlaceFree);
     }
 }

@@ -1,25 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
-public class Player : MonoBehaviour
+[RequireComponent(typeof(Rigidbody2D))]
+public class PlayerController : MonoBehaviour
 {
-    private ObstacleCheker _obstacleCheker;
-    private GroundCheker _groundCheker;
+    public GameObject TrapCheker;
+    public GameObject GroundCheker;
     private Rigidbody2D _rb;
 
-    public TMP_Text WalletDisplay;
     public float Speed;
     public float JumpForce;
     public int Wallet;
+
+    public UnityEvent TakeEvent;
 
     private void Start()
     {
         Time.timeScale = 1;
         _rb = GetComponent<Rigidbody2D>();
-        _groundCheker = GetComponent<GroundCheker>();
-        _obstacleCheker = GetComponent<ObstacleCheker>();
     }
 
     private void Update()
@@ -28,7 +26,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (_groundCheker.CheckGround() || _obstacleCheker.CheckObstacle())
+            if (GroundCheker.GetComponent<GroundCheker>().CheckGround() || TrapCheker.GetComponent<ObstacleCheker>().CheckObstacle())
             {
                 _rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
             }
@@ -37,13 +35,12 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Coin coin = collision.GetComponent<Coin>();
+        Coin coin = GetComponent<Coin>();
 
         if (coin != null)
         {
-            collision.GetComponent<Coin>().TakeCoin();
-            Wallet += collision.gameObject.GetComponent<Coin>().Cost;
-            WalletDisplay.text = Wallet.ToString();
+            Wallet += coin.Cost;
+            TakeEvent.Invoke();
         }
     }
 }
