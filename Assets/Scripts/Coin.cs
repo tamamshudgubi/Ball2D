@@ -2,11 +2,12 @@
 
 public class Coin : MonoBehaviour
 {
-    public int Cost = 100;
+    private int _cost = 100;
+
     public int TakeCoin()
     {
         Destroy(gameObject);
 
-        return Cost;
+        return _cost;
     }
 }

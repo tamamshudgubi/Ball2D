@@ -7,10 +7,10 @@ public class ObstacleCreator : MonoBehaviour
     [SerializeField] private float _obstaclewidthMax;
     [SerializeField] private float _obstacleheightMax;
 
-    public float FixedYPoz;
+    [SerializeField] private float _fixedYPoz;
     [SerializeField] private int _obstacleCount;
 
-    public GameObject Obstacle;
+    [SerializeField] private GameObject _obstacle;
 
     private void Start()
     {
@@ -18,8 +18,13 @@ public class ObstacleCreator : MonoBehaviour
         {
             float x = Random.Range(gameObject.transform.position.x, gameObject.transform.position.x * 2);
 
-            GameObject obstacle = Instantiate(Obstacle, new Vector3(x, FixedYPoz), Quaternion.identity).GetComponent<GameObject>();
-            obstacle.transform.localScale = gameObject.transform.localScale = new Vector3(Random.Range(_obstaclewidthMin, _obstaclewidthMax), Random.Range(_obstacleheightMin, _obstacleheightMax), 1);
+            GameObject obstacle = Instantiate(_obstacle, new Vector3(x, _fixedYPoz), Quaternion.identity);
+            RandomScale(obstacle);
         }
+    }
+
+    private void RandomScale(GameObject newObstacle)
+    {
+        newObstacle.transform.localScale = new Vector3(Random.Range(_obstaclewidthMin, _obstaclewidthMax), Random.Range(_obstacleheightMin, _obstacleheightMax), 1);
     }
 }

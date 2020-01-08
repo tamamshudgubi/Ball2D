@@ -1,13 +1,12 @@
-﻿using UnityEngine.UI;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public class CoinAmountText : MonoBehaviour
 {
     [SerializeField] private TMP_Text _amountText;
 
-    public void SetCoinAmount(PlayerController _player)
+    public void SetCoinAmount(PlayerController player)
     {
-        _amountText.text = _player.Wallet.ToString();
+        _amountText.text = player.GetCoinAmount().ToString();
     }
 }

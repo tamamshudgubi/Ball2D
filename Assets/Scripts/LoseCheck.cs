@@ -2,11 +2,11 @@
 
 public class LoseCheck : MonoBehaviour
 {
-    public GameObject LoseMenu;
+    [SerializeField] private GameObject _loseMenu;
 
     private void OnBecameInvisible()
     {
         Time.timeScale = 0;
-        LoseMenu.SetActive(true);
+        _loseMenu.SetActive(true);
     }
 }

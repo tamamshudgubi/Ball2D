@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public void BackTOMenu()
+    public void BackToMenu()
     {
         SceneManager.LoadScene("Main Menu");
     }

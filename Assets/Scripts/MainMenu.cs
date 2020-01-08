@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public Animator AuthorsAnim;
+    [SerializeField] private Animator _authorsAnimator;
 
     private void Start()
     {
@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
 
     public void Authors()
     {
-        AuthorsAnim.SetBool("IsClicked", !AuthorsAnim.GetBool("IsClicked"));
+        _authorsAnimator.SetBool("IsClicked", !_authorsAnimator.GetBool("IsClicked"));
     }
 
     public void Exit()

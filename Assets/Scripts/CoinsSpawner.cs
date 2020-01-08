@@ -1,32 +1,24 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class CoinsSpawner : MonoBehaviour
 {
-    [SerializeField] private float _timetoSpawn;
-    [SerializeField] private float _callDown;
+    [SerializeField] private PlayerController _player;
 
-    private Rigidbody2D _rb;
-    public float Speed;
+    [SerializeField] private float _timeToSpawn;
+    [SerializeField] private float _distanceToSpawn = 10f;
+    private float _spawnRate = 2;
 
-    public GameObject Coin;
+    [SerializeField] private GameObject _coin;
 
-    public float Radius;
-    public Transform Point;
-    public LayerMask IsPlaceFree;
-
-    private void Start()
-    {
-        _rb = GetComponent<Rigidbody2D>();
-    }
+    [SerializeField] private float _radius;
+    [SerializeField] private Transform _point;
+    [SerializeField] private LayerMask _isPlaceFree;
 
     private void Update()
     {
-        _timetoSpawn += Time.deltaTime;
+        _timeToSpawn += Time.deltaTime;
 
-        _rb.velocity = new Vector2(Speed, _rb.velocity.y);
-
-        if (_timetoSpawn >= 0.5f)
+        if (_timeToSpawn >= _spawnRate)
         {
             if (CheckObstacleForward() == false)
             {
@@ -37,23 +29,23 @@ public class CoinsSpawner : MonoBehaviour
                 SpawnCoinAboveObstacle();
             }
 
-            _timetoSpawn = _callDown;
+            _timeToSpawn = 0;
         }
     }
 
     private void SpawnCoinOnGround()
     {
-        Instantiate(Coin, gameObject.transform.position, Quaternion.identity);
+        Instantiate(_coin, new Vector3(_player.transform.position.x + _distanceToSpawn, gameObject.transform.position.y), Quaternion.identity);
     }
 
     private void SpawnCoinAboveObstacle()
     {
-        float MaxObstacleY = -2.5f;
-        Instantiate(Coin, new Vector3(gameObject.transform.position.x, MaxObstacleY), Quaternion.identity);
+        float maxObstacleY = -2.5f;
+        Instantiate(_coin, new Vector3(_player.transform.position.x + _distanceToSpawn, maxObstacleY), Quaternion.identity);
     }
 
     private bool CheckObstacleForward()
     {
-        return Physics2D.OverlapCircle(Point.transform.position, Radius, IsPlaceFree);
+        return Physics2D.OverlapCircle(_point.transform.position, _radius, _isPlaceFree);
     }
 }

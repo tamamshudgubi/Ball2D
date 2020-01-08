@@ -2,24 +2,15 @@
 
 public class GroundCreator : MonoBehaviour
 {
-    public GameObject StartPoint;
-    public GameObject WhatIsGround;
-    public GameObject Obstacle;
-    public GameObject BG;
-    public Transform RenderPoint;
+    [SerializeField] private GameObject _groundPrefab;
+
+    [SerializeField] private Transform _renderPoint;
 
     [SerializeField] private int _counter;
 
-    private void Start()
-    {
-        StartPoint.GetComponent<IsOnThroughPoint>().Groundcreator = gameObject;
-        StartPoint.GetComponent<IsOnThroughPoint>().BGWider = BG;
-        StartPoint.GetComponent<ObstacleCreator>().Obstacle = Obstacle;
-    }
-
     public void CreateGround()
     {
-        GameObject ground = Instantiate(StartPoint, new Vector3(_counter, RenderPoint.transform.position.y, RenderPoint.transform.position.z), Quaternion.identity).GetComponent<GameObject>();
+        Instantiate(_groundPrefab, new Vector3(_counter, _renderPoint.transform.position.y, _renderPoint.transform.position.z), Quaternion.identity);
 
         _counter += _counter;
     }

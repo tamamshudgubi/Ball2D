@@ -3,17 +3,17 @@
 [RequireComponent(typeof(Rigidbody2D))]
 public class CameraMoving : MonoBehaviour
 {
-    public float Speed;
+    [SerializeField] private float _speed;
 
-    private Rigidbody2D _rb;
+    private Rigidbody2D _rigidbody;
 
     private void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
+        _rigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        _rb.velocity = new Vector2(Speed, _rb.velocity.y);
+        _rigidbody.velocity = new Vector2(_speed, _rigidbody.velocity.y);
     }
 }

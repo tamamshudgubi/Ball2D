@@ -6,7 +6,7 @@ public class Pause : MonoBehaviour
 
     private EGameStates _state = EGameStates.Play;
 
-    public GameObject PauseMenu;
+    [SerializeField] private GameObject _pauseMenu;
 
     private void Update()
     {
@@ -32,13 +32,13 @@ public class Pause : MonoBehaviour
 
     private void StatePlay()
     {
-        PauseMenu.SetActive(false);
+        _pauseMenu.SetActive(false);
         Time.timeScale = 1.0f;
     }
 
     private void StatePause()
     {
-        PauseMenu.SetActive(true);
+        _pauseMenu.SetActive(true);
         Time.timeScale = 0.0f;
     }
 }
