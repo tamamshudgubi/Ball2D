@@ -3,15 +3,14 @@
 public class GroundCreator : MonoBehaviour
 {
     [SerializeField] private GameObject _groundPrefab;
-
     [SerializeField] private Transform _renderPoint;
 
-    [SerializeField] private int _counter;
+    private int _counter = 10;
 
     public void CreateGround()
     {
         Instantiate(_groundPrefab, new Vector3(_counter, _renderPoint.transform.position.y, _renderPoint.transform.position.z), Quaternion.identity);
 
-        _counter += _counter;
+        _counter *= 2;
     }
 }

@@ -1,12 +1,27 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class LoseCheck : MonoBehaviour
 {
     [SerializeField] private GameObject _loseMenu;
 
-    private void OnBecameInvisible()
+    private bool _isLose;
+
+    private IEnumerator SetLoseCondition(PlayerController player)
     {
-        Time.timeScale = 0;
-        _loseMenu.SetActive(true);
+        _loseMenu.SetActive(!_isLose);
+        player.enabled = _isLose;
+
+        yield return null;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        PlayerController player = collision.GetComponent<PlayerController>();
+
+        if (player)
+        {
+            StartCoroutine(SetLoseCondition(player));
+        }
     }
 }

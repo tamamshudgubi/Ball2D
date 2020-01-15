@@ -10,17 +10,17 @@ public class MainMenu : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void Play()
+    public void OnPlayButtonClick()
     {
         SceneManager.LoadScene("Level 1");
     }
 
-    public void Authors()
+    public void OnAuthorsButtonClick()
     {
         _authorsAnimator.SetBool("IsClicked", !_authorsAnimator.GetBool("IsClicked"));
     }
 
-    public void Exit()
+    public void OnExitButtonClick()
     {
         Application.Quit();
     }

@@ -6,13 +6,15 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private ObstacleCheker _obstacleCheker;
     [SerializeField] private GroundCheker _groundCheker;
-    private Rigidbody2D _rigidbody;
 
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
-    [SerializeField] private int _wallet;
 
-    public UnityEvent TakeEvent;
+    private int _wallet;
+
+    private Rigidbody2D _rigidbody;
+
+    private UnityEvent TakeCoinEvent;
 
     private void Start()
     {
@@ -45,7 +47,7 @@ public class PlayerController : MonoBehaviour
         if (coin != null)
         {
             _wallet += coin.TakeCoin();
-            TakeEvent.Invoke();
+            TakeCoinEvent.Invoke();
         }
     }
 }

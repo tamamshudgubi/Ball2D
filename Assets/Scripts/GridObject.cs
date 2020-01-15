@@ -8,7 +8,7 @@ public class GridObject : MonoBehaviour
     public GridLayer Layer => _layer;
     public int Chance => _chance;
 
-    private void Awake()
+    private void OnValidate()
     {
         _chance = Mathf.Clamp(_chance, 1, 100);
     }

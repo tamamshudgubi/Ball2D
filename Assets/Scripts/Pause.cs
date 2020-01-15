@@ -2,9 +2,9 @@
 
 public class Pause : MonoBehaviour
 {
-    private enum EGameStates { Play, Pause };
+    private enum GameState { Play, Pause };
 
-    private EGameStates _state = EGameStates.Play;
+    private GameState _state = GameState.Play;
 
     [SerializeField] private GameObject _pauseMenu;
 
@@ -16,17 +16,17 @@ public class Pause : MonoBehaviour
         }
     }
 
-    private void SetState(EGameStates value)
+    private void SetState(GameState value)
     {
-        if (value == EGameStates.Play)
+        if (value == GameState.Play)
         {
             StatePause();
-            _state = EGameStates.Pause;
+            _state = GameState.Pause;
         }
         else 
         {
             StatePlay();
-            _state = EGameStates.Play;
+            _state = GameState.Play;
         }
     }
 
