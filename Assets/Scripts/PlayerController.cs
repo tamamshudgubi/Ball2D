@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D _rigidbody;
 
-    private UnityEvent TakeCoinEvent;
+    private UnityEvent CoinCollected;
 
     private void Start()
     {
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
         if (coin != null)
         {
             _wallet += coin.TakeCoin();
-            TakeCoinEvent.Invoke();
+            CoinCollected.Invoke();
         }
     }
 }

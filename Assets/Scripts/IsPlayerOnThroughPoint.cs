@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class IsPlayerOnThroughPoint : MonoBehaviour
 {
-    private UnityEvent CreateGroundEvent;
+    private UnityEvent GroundCreating;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -11,7 +11,7 @@ public class IsPlayerOnThroughPoint : MonoBehaviour
 
         if (player != null)
         {
-            CreateGroundEvent.Invoke();
+            GroundCreating.Invoke();
         }
     }
 }
