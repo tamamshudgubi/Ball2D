@@ -4,9 +4,9 @@ public class Pause : MonoBehaviour
 {
     private enum GameState { Play, Pause };
 
-    private GameState _state = GameState.Play;
-
     [SerializeField] private GameObject _pauseMenu;
+
+    private GameState _state = GameState.Play;
 
     private void Update()
     {
@@ -20,23 +20,23 @@ public class Pause : MonoBehaviour
     {
         if (value == GameState.Play)
         {
-            StatePause();
+            PauseState();
             _state = GameState.Pause;
         }
         else 
         {
-            StatePlay();
+            PlayState();
             _state = GameState.Play;
         }
     }
 
-    private void StatePlay()
+    private void PlayState()
     {
         _pauseMenu.SetActive(false);
         Time.timeScale = 1.0f;
     }
 
-    private void StatePause()
+    private void PauseState()
     {
         _pauseMenu.SetActive(true);
         Time.timeScale = 0.0f;

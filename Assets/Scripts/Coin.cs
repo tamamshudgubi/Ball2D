@@ -4,7 +4,7 @@ public class Coin : MonoBehaviour
 {
     private int _cost = 100;
 
-    public int TakeCoin()
+    public int PickUpCoin()
     {
         Destroy(gameObject);
 

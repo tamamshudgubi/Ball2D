@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class LoseCheck : MonoBehaviour
+public class LosingCheck : MonoBehaviour
 {
     [SerializeField] private GameObject _loseMenu;
 
     private bool _isLose;
 
-    private IEnumerator SetLoseCondition(PlayerController player)
+    private IEnumerator SetLosingState(PlayerController player)
     {
         _loseMenu.SetActive(!_isLose);
         player.enabled = _isLose;
@@ -21,7 +21,7 @@ public class LoseCheck : MonoBehaviour
 
         if (player)
         {
-            StartCoroutine(SetLoseCondition(player));
+            StartCoroutine(SetLosingState(player));
         }
     }
 }

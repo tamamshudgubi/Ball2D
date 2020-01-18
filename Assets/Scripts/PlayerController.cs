@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
         if (coin != null)
         {
-            _wallet += coin.TakeCoin();
+            _wallet += coin.PickUpCoin();
             CoinCollected.Invoke();
         }
     }

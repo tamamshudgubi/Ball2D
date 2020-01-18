@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class BackgroundWider : MonoBehaviour
+public class BackgroundExpander : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _renderer;
 
