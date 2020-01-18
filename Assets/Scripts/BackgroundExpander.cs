@@ -6,7 +6,7 @@ public class BackgroundExpander : MonoBehaviour
 
     private float _fixedXSize = _renderer.size.x;
 
-    public void Widen()
+    public void WidenBackground()
     {
         _renderer.size = new Vector2(_renderer.size.x + fixedXSize, _renderer.size.y);
     }

@@ -30,13 +30,13 @@ public class Pause : MonoBehaviour
         }
     }
 
-    private void PlayState()
+    private void SetPlayState()
     {
         _pauseMenu.SetActive(false);
         Time.timeScale = 1.0f;
     }
 
-    private void PauseState()
+    private void SetPauseState()
     {
         _pauseMenu.SetActive(true);
         Time.timeScale = 0.0f;
