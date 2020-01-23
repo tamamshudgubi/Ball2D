@@ -1,18 +1,16 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class LosingCheck : MonoBehaviour
+public class LosingChecker : MonoBehaviour
 {
     [SerializeField] private GameObject _loseMenu;
 
-    private bool _isLose;
-
-    private IEnumerator SetLosingState(PlayerController player)
+    private IEnumerator SetLoseCondition(PlayerController player)
     {
-        _loseMenu.SetActive(!_isLose);
-        player.enabled = _isLose;
+        yield return new WaitForSecondsRealtime(2f);
 
-        yield return null;
+        _loseMenu.SetActive(true);
+        player.enabled = false;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -21,7 +19,7 @@ public class LosingCheck : MonoBehaviour
 
         if (player)
         {
-            StartCoroutine(SetLosingState(player));
+            StartCoroutine(SetLoseCondition(player));
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.Events;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -10,11 +10,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
 
-    private int _wallet;
+    [SerializeField] private int _wallet;
 
     private Rigidbody2D _rigidbody;
 
-    private UnityEvent CoinCollected;
+    public event Action<int> GetCurrentCoinAmount;
 
     private void Start()
     {
@@ -35,19 +35,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public int GetCoinAmount()
-    {
-        return _wallet;
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Coin coin = collision.GetComponent<Coin>();
 
-        if (coin != null)
+        if (coin)
         {
-            _wallet += coin.PickUpCoin();
-            CoinCollected.Invoke();
+            _wallet += coin.TakeCoin();
+            GetCurrentCoinAmount?.Invoke(_wallet);
         }
     }
 }

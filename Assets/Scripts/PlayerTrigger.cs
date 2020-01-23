@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class IsPlayerOnThroughPoint : MonoBehaviour
+public class PlayerTrigger : MonoBehaviour
 {
-    private UnityEvent GroundCreating;
+    [SerializeField] private UnityEvent _groundCreating;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -11,7 +11,7 @@ public class IsPlayerOnThroughPoint : MonoBehaviour
 
         if (player != null)
         {
-            GroundCreating.Invoke();
+            _groundCreating.Invoke();
         }
     }
 }

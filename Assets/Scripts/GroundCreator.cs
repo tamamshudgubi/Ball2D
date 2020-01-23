@@ -5,12 +5,19 @@ public class GroundCreator : MonoBehaviour
     [SerializeField] private GameObject _groundPrefab;
     [SerializeField] private Transform _renderPoint;
 
-    private int _counter = 10;
+    [SerializeField] private int _nextGroundNumber = 1;
+
+    private int _groundLength = 15;
 
     public void CreateGround()
     {
-        Instantiate(_groundPrefab, new Vector3(_counter, _renderPoint.transform.position.y, _renderPoint.transform.position.z), Quaternion.identity);
+        Instantiate(_groundPrefab, GetPosition(), Quaternion.identity);
 
-        _counter *= 2;
+        _nextGroundNumber++;
+    }
+
+    private Vector3 GetPosition()
+    {
+        return new Vector3(_nextGroundNumber * _groundLength, _renderPoint.transform.position.y, _renderPoint.transform.position.z);
     }
 }
