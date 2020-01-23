@@ -9,7 +9,7 @@ public class PlayerTrigger : MonoBehaviour
     {
         PlayerController player = collision.GetComponent<PlayerController>();
 
-        if (player != null)
+        if (player)
         {
             _groundCreating.Invoke();
         }
