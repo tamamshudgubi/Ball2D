@@ -2,10 +2,17 @@
 
 public class CameraMoving : MonoBehaviour
 {
-    [SerializeField] private float _speed;
+    [SerializeField] private PlayerController _player;
+
+    private float _speed;
+
+    private void Awake()
+    {
+        _speed = _player.GetCurrentSpeed();
+    }
 
     private void Update()
     {
-        gameObject.transform.Translate(new Vector2(_speed * Time.deltaTime, 0));
+        transform.Translate(new Vector2(_speed * Time.deltaTime, 0));
     }
 }

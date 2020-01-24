@@ -45,4 +45,9 @@ public class PlayerController : MonoBehaviour
             CoinCollected?.Invoke(_wallet);
         }
     }
+
+    public float GetCurrentSpeed()
+    {
+        return _speed;
+    }
 }
