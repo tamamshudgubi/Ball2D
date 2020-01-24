@@ -4,17 +4,17 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private ObstacleCheker _obstacleCheker;
-    [SerializeField] private GroundCheker _groundCheker;
+    [SerializeField] private ObstacleChecker _obstacleChecker;
+    [SerializeField] private GroundChecker _groundChecker;
 
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
 
-    [SerializeField] private int _wallet;
+    private int _wallet;
 
     private Rigidbody2D _rigidbody;
 
-    public event Action<int> GetCurrentCoinAmount;
+    public event Action<int> CoinCollected;
 
     private void Start()
     {
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (_groundCheker.CheckGround() || _obstacleCheker.CheckObstacle())
+            if (_groundChecker.CheckGround() || _obstacleChecker.CheckObstacle())
             {
                 _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
             }
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         if (coin)
         {
             _wallet += coin.TakeCoin();
-            GetCurrentCoinAmount?.Invoke(_wallet);
+            CoinCollected?.Invoke(_wallet);
         }
     }
 }

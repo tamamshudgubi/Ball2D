@@ -9,15 +9,15 @@ public class CoinAmountText : MonoBehaviour
 
     private void OnEnable()
     {
-        _player.GetCurrentCoinAmount += SetCoinAmount;
+        _player.CoinCollected += OnCoinCollected;
     }
 
     private void OnDisable()
     {
-        _player.GetCurrentCoinAmount -= SetCoinAmount;
+        _player.CoinCollected -= OnCoinCollected;
     }
 
-    public void SetCoinAmount(int coinAmount)
+    public void OnCoinCollected(int coinAmount)
     {
         _amountText.text = coinAmount.ToString();
     }

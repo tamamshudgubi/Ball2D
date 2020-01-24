@@ -5,8 +5,7 @@ public class GroundCreator : MonoBehaviour
     [SerializeField] private GameObject _groundPrefab;
     [SerializeField] private Transform _renderPoint;
 
-    [SerializeField] private int _nextGroundNumber = 1;
-
+    private int _nextGroundNumber = 1;
     private int _groundLength = 15;
 
     public void CreateGround()
